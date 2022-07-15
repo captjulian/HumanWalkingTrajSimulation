@@ -1,0 +1,254 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="default">
+   <plugin name="xbot2_clock" filename="libxbot2_gz_clock.so"/>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <physics name="update_rate" type="ode">
+      <real_time_update_rate>4000</real_time_update_rate>
+      <max_step_size>0.00025</max_step_size>
+      <max_contacts>5</max_contacts>
+      <real_time_factor>1</real_time_factor>
+      <gravity>0 0 -9.8</gravity>
+      <bullet>
+	      <solver>
+          <type>quick</type>
+          <iters>100</iters>
+          <sor>1.55</sor>
+        </solver>
+        <constraints>
+          <contact_surface_layer>0.2</contact_surface_layer>
+          <cfm>0.005</cfm>
+          <erp>0.2</erp>
+        </constraints> 
+      </bullet>
+      <ode>
+	      <solver>
+         <type>quick</type>
+         <iters>50</iters>
+          <sor>1.20</sor>
+        </solver>
+        <constraints>
+          <contact_surface_layer>0.0002</contact_surface_layer>
+          <contact_max_correcting_vel>500</contact_max_correcting_vel>
+          <cfm>0.000001</cfm>
+          <erp>0.3</erp>
+        </constraints> 
+      </ode>
+    </physics>
+        <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+    </model>
+    <actor name="actor">
+      <skin>
+        <filename>/home/liang/yolo_detector/src/2d_to_3d/world/materials/walk.dae</filename>
+      </skin>
+    <script>
+    <loop>true</loop>
+    <delay_start>0.000000</delay_start>
+    <auto_start>true</auto_start>
+	<!--trajectory id="0" type="walk">
+            <waypoint>
+                <time>0</time>
+                <pose>3 -1 0.0 0 0 0</pose>
+            </waypoint>
+            <waypoint>
+                <time>2</time>
+                <pose>5.0 -1 0.0 0 0 0</pose>
+            </waypoint>
+            <waypoint>
+                <time>2.5</time>
+                <pose>5 -1 0.0 0 0 1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>4</time>
+                <pose>5 1 0.0 0 0 1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>4.5</time>
+                <pose>5 1 0.0 0 0 3.142</pose>
+            </waypoint>
+            <waypoint>
+                <time>6</time>
+                <pose>3 1 0.0 0 0 3.142</pose>
+            </waypoint>
+            <waypoint>
+                <time>6.5</time>
+                <pose>3 1 0.0 0 0 -1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>8</time>
+                <pose>3 -1 0.0 0 0 -1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>8.5</time>
+                <pose>3 -1 0.0 0 0 0</pose>
+            </waypoint>
+        </trajectory-->
+      	<!--trajectory id="0" type="walk">
+            <waypoint>
+                <time>0</time>
+                <pose>1.5 -2.0 0.0 0 0 1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>2.5</time>
+                <pose>1.5 -1.0 0.0 0 0 1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>5.0</time>
+                <pose>1.5 0.0 0.0 0 0 1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>7.5</time>
+                <pose>1.5 1.0 0.0 0 0 1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>9</time>
+                <pose>1.5 2.0 0.0 0 0 -1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>11.5</time>
+                <pose>1.5 1.0 0.0 0 0 -1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>14</time>
+                <pose>1.5 0.0 0.0 0 0 -1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>16.5</time>
+                <pose>1.5 -1.0 0.0 0 0 -1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>19</time>
+                <pose>1.5 -2.0 0.0 0 0 1.57</pose>
+            </waypoint>
+        </trajectory-->
+        <!--trajectory id="0" type="walk">
+            <waypoint>
+                <time>0</time>
+                <pose>3.0 1.0 0.0 0 0 -2.03</pose>
+            </waypoint>
+            <waypoint>
+                <time>2.5</time>
+                <pose>2.0 0.5 0.0 0 0 -2.35</pose>
+            </waypoint>
+            <waypoint>
+                <time>4</time>
+                <pose>1.5 0.2 0.0 0 0 -1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>7</time>
+                <pose>1.5 -0.1 0.0 0 0 -1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>9.5</time>
+                <pose>1.5 -0.4 0.0 0 0 -1.01</pose>
+            </waypoint>
+            <waypoint>
+                <time>12</time>
+                <pose>2.5 -0.5 0.0 0 0 -0.79</pose>
+            </waypoint>
+            <waypoint>
+                <time>14</time>
+                <pose>3.0 -1.0 0.0 0 0 0</pose>
+            </waypoint>
+            <waypoint>
+                <time>16</time>
+                <pose>3.0 0.0 0.0 0 0 1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>18</time>
+                <pose>3.0 1.0 0.0 0 0 1.57</pose>
+            </waypoint>
+        </trajectory-->
+        <trajectory id="0" type="walk">
+            <waypoint>
+                <time>0</time>
+                <pose>3.0 -1.0 0.0 0 0 2.68</pose>
+            </waypoint>
+            <waypoint>
+                <time>2.5</time>
+                <pose>1.5 -0.8 0.0 0 0 2.36</pose>
+            </waypoint>
+            <waypoint>
+                <time>4</time>
+                <pose>1.5 -0.2 0.0 0 0 1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>4.5</time>
+                <pose>1.5 0.1 0.0 0 0 1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>5.0</time>
+                <pose>1.5 0.4 0.0 0 0 1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>5.5</time>
+                <pose>1.5 0.8 0.0 0 0 0.4</pose>
+            </waypoint>
+            <waypoint>
+                <time>8</time>
+                <pose>3.0 1.0 0.0 0 0 0</pose>
+            </waypoint>
+            <waypoint>
+                <time>10</time>
+                <pose>3.0 0.0 0.0 0 0 -1.57</pose>
+            </waypoint>
+            <waypoint>
+                <time>12</time>
+                <pose>3.0 -1.0 0.0 0 0 -1.57</pose>
+            </waypoint>
+        </trajectory>
+    </script>
+   </actor>
+      <!--include>
+      <uri>model://moving_obstacle_cylinder_thin</uri>
+       <pose>1.0 0.0 0 0 -0 0</pose>
+    </include-->  
+  </world>
+</sdf>
