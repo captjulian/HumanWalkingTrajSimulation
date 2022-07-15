@@ -86,7 +86,7 @@
     </model>
     <actor name="actor">
       <skin>
-        <filename>/home/liang/yolo_detector/src/2d_to_3d/world/materials/walk.dae</filename>
+        <filename>/materials/walk.dae</filename>
       </skin>
     <script>
     <loop>true</loop>
